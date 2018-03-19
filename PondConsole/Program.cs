@@ -3,13 +3,13 @@ using PondLibrary;
 
 namespace PondConsole
 {
-    class Program
+    public class Program
     {
         public static void Main(string[] args)
         {
             var pond = new Pond(5);
 
-            foreach(int item in pond.FoodEntities)
+            foreach(var item in pond.Food)
             {
                 Console.WriteLine(item);
             }
