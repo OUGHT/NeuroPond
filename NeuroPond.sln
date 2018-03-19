@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PondLibrary", "PondLibrary\PondLibrary.csproj", "{AA864D65-C751-4CB6-9837-9790336DA0DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PondLibrary", "PondLibrary\PondLibrary.csproj", "{AA864D65-C751-4CB6-9837-9790336DA0DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PondConsole", "PondConsole\PondConsole.csproj", "{5E7EB5A2-2020-4613-BEAD-30FF220ABDA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PondConsole", "PondConsole\PondConsole.csproj", "{5E7EB5A2-2020-4613-BEAD-30FF220ABDA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

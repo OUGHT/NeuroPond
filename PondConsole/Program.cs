@@ -1,5 +1,6 @@
 ﻿using System;
 using PondLibrary;
+using PondLibrary.Entities;
 
 namespace PondConsole
 {
@@ -9,7 +10,10 @@ namespace PondConsole
         {
             var pond = new Pond(5);
 
-            foreach(var item in pond.Food)
+            Console.WriteLine(pond.Bounds);
+            Console.WriteLine();
+
+            foreach (Entity item in pond.Food)
             {
                 Console.WriteLine(item);
             }
