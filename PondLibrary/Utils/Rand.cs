@@ -21,13 +21,5 @@ namespace PondLibrary.Utils
                                                   PcgExtended.AdvancePow2
                                               )
                                           );
-
-        public static Vector2 RandomPondPoint()
-        {
-            return new Vector2(
-                Rand2D.NextFloat(Pond.XMin, Pond.XMax),
-                Rand2D.NextFloat(Pond.YMin, Pond.YMax)
-            );
-        }
     }
 }

@@ -24,7 +24,7 @@ namespace PondLibrary.Entities
         {
         }
 
-        public Entity() : this(Rand.RandomPondPoint())
+        public Entity() : this(Pond.RandomPoint())
         {
         }
 

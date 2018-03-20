@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Numerics;
 using PondLibrary.Entities;
 using PondLibrary.Utils;
 
@@ -30,6 +31,14 @@ namespace PondLibrary
         public void AddFood()
         {
             Food.Add(new Entity());
+        }
+
+        public static Vector2 RandomPoint()
+        {
+            return new Vector2(
+                Rand.Rand2D.NextFloat(XMin, XMax),
+                Rand.Rand2D.NextFloat(YMin, YMax)
+            );
         }
     }
 }
