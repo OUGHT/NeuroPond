@@ -44,6 +44,23 @@ namespace PondLibrary.Utils
         {
         }
 
+        public Vector2 ClampHard(Vector2 point)
+        {
+            return Vector2.Clamp(point, TopLeft, BottomRight);
+        }
+
+        public Vector2 ClampCycle(Vector2 point)
+        {
+            float x = (Left - point.X) % Width + Left;
+            float y = (Top - point.Y) % Height + Top;
+            return new Vector2(x, y);
+        }
+
+        public bool IsPointInside(Vector2 point)
+        {
+            return ClampHard(point) == point;
+        }
+
         public override string ToString()
         {
             return $"Rect: Left  = {Left,7:###0.00}; Top    = {Top,7:###0.00};\n" +
