@@ -14,29 +14,11 @@ namespace PondLibrary.Utils
 
         public float Width => BottomRight.X - TopLeft.X;
         public float Height => BottomRight.Y - TopLeft.Y;
-
-        private void NormalizeRect()
-        {
-            if (TopLeft.X > BottomRight.X)
-            {
-                float temp = TopLeft.X;
-                TopLeft = new Vector2(BottomRight.X, TopLeft.Y);
-                BottomRight = new Vector2(temp, BottomRight.Y);
-            }
-            // ReSharper disable once InvertIf
-            if (TopLeft.Y > BottomRight.Y)
-            {
-                float temp = TopLeft.Y;
-                TopLeft = new Vector2(TopLeft.X, BottomRight.Y);
-                BottomRight = new Vector2(BottomRight.X, temp);
-            }
-        }
         
         public Rect(Vector2 topLeft, Vector2 bottomRight)
         {
-            TopLeft = topLeft;
-            BottomRight = bottomRight;
-            NormalizeRect();
+            TopLeft = Vector2.Min(topLeft, bottomRight);
+            BottomRight = Vector2.Max(topLeft, bottomRight);
         }
 
         public Rect(float left, float top, float right, float bottom) : 
