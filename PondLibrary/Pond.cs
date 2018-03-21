@@ -11,10 +11,11 @@ namespace PondLibrary
         public const float YMin = 0.0F;
         public const float XMax = 1000.0F;
         public const float YMax = 1000.0F;
-        public readonly Rect Bounds = new Rect(XMin, YMax, XMax, YMin); // Тестируем корявые границы
-//        public readonly Rect Bounds = new Rect(XMin, YMin, XMax, YMax);
-        
-        public List<Entity> Food { get; } = new List<Entity>();
+        public static readonly Rect Bounds = new Rect(XMin, YMin, XMax, YMax);
+
+        public const int TickLength = 20; // Длительность тика в мс
+
+        public List<Entity> Entities { get; } = new List<Entity>();
 
         public Pond()
         {
@@ -28,17 +29,35 @@ namespace PondLibrary
             }
         }
 
-        public void AddFood()
-        {
-            Food.Add(new Entity());
-        }
-
         public static Vector2 RandomPoint()
         {
             return new Vector2(
                 Rand.Rand2D.NextFloat(XMin, XMax),
                 Rand.Rand2D.NextFloat(YMin, YMax)
             );
+        }
+
+        public static Vector2 ClampBounds(Vector2 v)
+        {
+            return Bounds.ClampCycle(v);
+        }
+
+        public void AddFood()
+        {
+            Entities.Add(new Entity());
+        }
+
+        public void AddStrider()
+        {
+            Entities.Add(new Strider());
+        }
+
+        public void Tick()
+        {
+            foreach (Entity entity in Entities)
+            {
+                entity.Tick();
+            }
         }
     }
 }
