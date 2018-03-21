@@ -11,7 +11,7 @@ namespace PondLibrary
         public const float YMin = 0.0F;
         public const float XMax = 1000.0F;
         public const float YMax = 1000.0F;
-        public static readonly Rect Bounds = new Rect(XMin, YMin, XMax, YMax);
+        public readonly Rect Bounds = new Rect(XMin, YMin, XMax, YMax);
 
         public const int TickLength = 20; // Длительность тика в мс
 
@@ -29,7 +29,7 @@ namespace PondLibrary
             }
         }
 
-        public static Vector2 RandomPoint()
+        public Vector2 RandomPoint()
         {
             return new Vector2(
                 Rand.Rand2D.NextFloat(XMin, XMax),
@@ -37,19 +37,23 @@ namespace PondLibrary
             );
         }
 
-        public static Vector2 ClampBounds(Vector2 v)
+        public Vector2 ClampBounds(Vector2 v)
         {
             return Bounds.ClampCycle(v);
         }
 
-        public void AddFood()
+        public Entity AddFood()
         {
-            Entities.Add(new Entity());
+            var entity = new Entity(this);
+            Entities.Add(entity);
+            return entity;
         }
 
-        public void AddStrider()
+        public Strider AddStrider()
         {
-            Entities.Add(new Strider());
+            var strider = new Strider(this);
+            Entities.Add(strider);
+            return strider;
         }
 
         public void Tick()

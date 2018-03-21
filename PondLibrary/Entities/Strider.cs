@@ -25,31 +25,31 @@ namespace PondLibrary.Entities
         public float Angle
         {
             get => Velocity.Angle();
-            set => Velocity = Velocity.Rotated(value);
+            set => Velocity = Vector2.UnitX.Rotated(value) * Velocity.Length();
         }
 
-        public Strider(Vector2 location, Vector2 velocity,
+        public Strider(Pond pond, Vector2 location, Vector2 velocity,
             float radius = DefaultRadius)
-            : base(location, radius)
+            : base(pond, location, radius)
         {
             Speed = velocity.Length();
             Angle = velocity.Angle();
         }
 
-        public Strider(float x, float y, float speed, float angle,
-            float radius = DefaultRadius) : base(x, y, radius)
+        public Strider(Pond pond, float x, float y, float speed, float angle,
+            float radius = DefaultRadius) : base(pond, x, y, radius)
         {
             Speed = speed;
             Angle = angle;
         }
 
-        public Strider(float x, float y, float radius = DefaultRadius) : base(x,
+        public Strider(Pond pond, float x, float y, float radius = DefaultRadius) : base(pond, x,
             y, radius)
         {
             SetRandomVelocity();
         }
 
-        public Strider(float radius = DefaultRadius) : base(radius)
+        public Strider(Pond pond, float radius = DefaultRadius) : base(pond, radius)
         {
             SetRandomVelocity();
         }
@@ -59,7 +59,7 @@ namespace PondLibrary.Entities
             return
                 $"Strider: x = {X,6:###0.00}; y =   {Y,6:###0.00};\n" +
                 $"         v = {Speed,6:###0.00}; phi = {Angle,6:###0.00};\n" +
-                $"         GUID = {Guid.ToString().Substring(0,4)}";
+                $"         GUID = {GuidReadable}";
         }
 
         private void SetRandomVelocity()
@@ -85,7 +85,7 @@ namespace PondLibrary.Entities
 
         public override void Tick()
         {
-            Location = Pond.ClampBounds(Location + Velocity);
+            Location = pond.ClampBounds(Location + Velocity);
         }
     }
 }

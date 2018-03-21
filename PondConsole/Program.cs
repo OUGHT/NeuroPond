@@ -9,32 +9,42 @@ namespace PondConsole
     {
         public static void Main(string[] args)
         {
-            var pond = new Pond(2);
+            var pond = new Pond(200);
 
-            Console.WriteLine(Pond.Bounds);
+            Console.WriteLine(pond.Bounds);
             Console.WriteLine();
 
-            foreach (Entity entity in pond.Entities)
-            {
-                Console.WriteLine(entity);
-            }
+//            foreach (Entity entity in pond.Entities)
+//            {
+//                Console.WriteLine(entity);
+//            }
 
-//            pond.AddStrider();
-            pond.AddStrider();
+            Strider strider = pond.AddStrider();
+            strider.Move(50f, 50f);
+            strider.SetSpeedUnited(1);
+            strider.Angle = 0f;
+            strider.OnCollide += (obj, e) =>
+                Console.WriteLine($"Strider {strider.GuidReadable} collided!");
+            Console.WriteLine(strider);
 
-            for (int i = 0; i < 5; i++)
+            Entity food = pond.AddFood();
+            food.Move(55f, 50f);
+            Console.WriteLine(food);
+            Console.WriteLine();
+
+            for (int i = 0; i < 10; i++)
             {
                 foreach (Entity entity in pond.Entities)
                 {
-                    if (entity is Strider strider)
+                    if (entity is Strider value)
                     {
-                        Console.WriteLine(strider);
+                        Console.WriteLine(value);
                     }
                 }
-                Thread.Sleep(Pond.TickLength);
+//                Thread.Sleep(Pond.TickLength);
                 pond.Tick();
             }
-
+            Console.WriteLine("Finished!");
 
             Console.ReadLine();
         }
